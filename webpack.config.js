@@ -33,4 +33,4 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']  // 添加这行
   }
-};nmp
+};

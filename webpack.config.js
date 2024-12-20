@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -6,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/'  // 添加这行
+    publicPath: ''
   },
   module: {
     rules: [
@@ -22,15 +23,20 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    })
+  ],
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
     },
     compress: true,
     port: 3000,
-    historyApiFallback: true  // 添加这行
+    historyApiFallback: true
   },
   resolve: {
-    extensions: ['.js', '.jsx']  // 添加这行
+    extensions: ['.js', '.jsx']
   }
 };

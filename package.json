@@ -1,8 +1,11 @@
 {
+  "homepage": "https://HanyuHenry.github.io/mycv_page",
   "name": "my_cv_git",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve --open",
     "build": "webpack"
   },

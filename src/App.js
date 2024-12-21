@@ -300,7 +300,7 @@ function App() {
               },
               {
                 title: "Frontend Developer (Part time)",
-                company: "Apex Automation                        Edmonton, Canada",
+                company: "Apex Automation     Edmonton, Canada",
                 period: "Feb. 2021 - July 2021",
                 points: [
                   "Built iOS applications using Swift and SwiftUI for industrial automation",
@@ -531,7 +531,7 @@ function App() {
               },
               {
                 title: "Continuous Mapping of Covering Approximation Spaces and Topologies Induced by Arbitrary Covering Relations", 
-                authors: ["Xiuying Shang", "Peng Wang", "Rui Wu", "Hanyu E"],
+                authors: ["Xiao Shang", "Pei Wang", "Ronghuo Wu", "Hanyu E"],
                 journal: "Symmetry",
                 volume: "15",
                 number: "10",
@@ -542,7 +542,7 @@ function App() {
               },
               {
                 title: "Language recovery in discrete-event systems against sensor deception attacks",
-                authors: ["Abdelouahab Labed", "Ilyasse Saadaoui", "Hanyu E", "Mohamed A. El-Meligy", "Zhiwu Li", "Mohamed Sharaf"],
+                authors: ["Abdeldjalil Labed", "Ikram Saadaoui", "Hanyu E", "Mohammed A. El-Meligy", "Zhiwu Li", "Mohamed Sharaf"],
                 journal: "Mathematics",
                 volume: "11",
                 number: "10", 
@@ -554,7 +554,7 @@ function App() {
               },
               {
                 title: "Modeling of Fault Recovery and Repair for Automated Manufacturing Cells with Load-Sharing Redundant Elements Using Petri Nets",
-                authors: ["Emad A. Alzalab", "Umaru Saleh Abubakar", "Hanyu E", "Zhiwu Li", "Mohamed A. El-Meligy", "Ahmed M. El-Sherbeeny"], 
+                authors: ["Ebrahim A. Alzalab", "Umar Suleiman Abubakar", "Hanyu E", "Zhiwu Li", "Mohammed A. El-Meligy", "Ahmed M. El-Sherbeeny"], 
                 journal: "Processes",
                 volume: "11",
                 number: "5",
@@ -569,8 +569,8 @@ function App() {
                 journal: "IEEE Transactions on Fuzzy Systems",
                 year: "2022", 
                 note: "18*",
-                doi: "10.1109/TFUZZ.2022.3200511",
-                link: "https://doi.org/10.1109/TFUZZ.2022.3200511"
+                doi: "10.1109/TFUZZ.2022.3226250",
+                link: "https://doi.org/10.1109/TFUZZ.2022.3226250"
               },
               {
                 title: "A granular multicriteria group decision making for renewable energy planning problems",
@@ -578,12 +578,12 @@ function App() {
                 journal: "Renewable Energy",
                 year: "2022",
                 note: "9",
-                doi: "10.1016/j.renene.2022.09.093",
-                link: "https://doi.org/10.1016/j.renene.2022.09.093"
+                doi: "10.1016/j.renene.2022.09.051",
+                link: "https://doi.org/10.1016/j.renene.2022.09.051"
               },
               {
                 title: "Design of Fuzzy Rule-Based Models with Fuzzy Relational Factorization",
-                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Aminah Robinson Fayek", "Zhiwu Li", "Jing Li"],
+                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Aminah Robinson Fayek", "Zhiwu Li", "Jinbo Li"],
                 journal: "Expert Systems with Applications",
                 pages: "117904",
                 year: "2022", 
@@ -593,52 +593,52 @@ function App() {
               },
               {
                 title: "High-accuracy DOA Estimation Algorithm at Low SNR Through Exploiting a Supervised Index",
-                authors: ["Kaijie Xu", "Ming Xing", "Ruhu Zhang", "Hanyu E", "Meng Sha", "Wenjie Nie", "Yi Quan"],
+                authors: ["Kaijie Xu", "Mengdao Xing", "Rui Zhang", "Hanyu E", "Minghui Sha", "Weike Nie", "Yinghui Quan"],
                 journal: "IEEE Transactions on Aerospace and Electronic Systems",
                 year: "2022",
                 note: "20",
-                doi: "10.1109/TAES.2022.3173554",
-                link: "https://doi.org/10.1109/TAES.2022.3173554" 
+                doi: "10.1109/TAES.2022.3144121",
+                link: "https://doi.org/10.1109/TAES.2022.3144121" 
               },
               {
                 title: "Fuzzy Rule-Based Models of High-Dimensional Systems: Design and Analysis",
                 authors: ["Hanyu E"],
                 journal: "University of Alberta",
                 year: "2022",
-                doi: "10.7939/r3-dwmj-as63",
-                link: "https://doi.org/10.7939/r3-dwmj-as63"
+                doi: "https://doi.org/10.7939/r3-37gb-c830",
+                link: "https://era.library.ualberta.ca/items/9f016716-954f-442a-bb56-ecc539936171"
               },
               {
                 title: "High-Dimensional Data Clustering with Fuzzy C-Means: Problem, Reason, and Solution",
-                authors: ["Yang Shen", "Hanyu E", "Tianmei Chen", "Zhemin Xiao", "Bo Liu", "Yansong Chen"],
+                authors: ["Yinghua Shen", "Hanyu E", "Tianhua Chen", "Zhi Xiao", "Bingsheng Liu", "Yuan Chen"],
                 journal: "International Work-Conference on Artificial Neural Networks",
                 pages: "89-100",
                 year: "2021",
                 note: "3",
-                doi: "10.1007/978-3-030-85099-9_9",
-                link: "https://doi.org/10.1007/978-3-030-85099-9_9"
+                doi: "10.1007/978-3-030-85030-2_8",
+                link: "https://doi.org/10.1007/978-3-030-85030-2_8"
               },
               {
                 title: "Fast Direction of Arrival Estimation for Uniform Circular Arrays With a Virtual Signal Subspace",
-                authors: ["Kaijie Xu", "Yi Quan", "Bo Bie", "Ming Xing", "Wenjie Nie", "Hanyu E"],
+                authors: ["Kaijie Xu", "Yinghui Quan", "Bowen Bie", "Mengdao Xing", "Weike Nie", "Hanyu E"],
                 journal: "IEEE Transactions on Aerospace and Electronic Systems", 
                 volume: "57",
                 number: "3",
                 pages: "1731-1741",
                 year: "2021",
                 note: "24",
-                doi: "10.1109/TAES.2020.3037849",
-                link: "https://doi.org/10.1109/TAES.2020.3037849"
+                doi: "10.1109/TAES.2021.3050667",
+                link: "https://doi.org/10.1109/TAES.2021.3050667"
               },
               {
                 title: "From granulation-degranulation mechanisms to fuzzy rule-based models: Augmentation of granular-based models with a double fuzzy clustering",
-                authors: ["Kaijie Xu", "Hanyu E", "Yi Quan", "Ye Cui", "Wenjie Nie"], 
+                authors: ["Kaijie Xu", "Hanyu E", "Yinghui Quan", "Ye Cui", "Weike Nie"], 
                 journal: "Journal of Intelligent & Fuzzy Systems",
                 pages: "1-10",
                 year: "2021",
                 note: "4",
-                doi: "10.3233/JIFS-212576",
-                link: "https://doi.org/10.3233/JIFS-212576"
+                doi: "10.3233/JIFS-210336",
+                link: "https://doi.org/10.3233/JIFS-210336"
               },
               {
                 title: "Fuzzy Relational Matrix Factorization and Its Granular Characterization in Data Description",
@@ -646,8 +646,8 @@ function App() {
                 journal: "IEEE Transactions on Fuzzy Systems",
                 year: "2020",
                 note: "11*",
-                doi: "10.1109/TFUZZ.2020.3035968",
-                link: "https://doi.org/10.1109/TFUZZ.2020.3035968"
+                doi: "10.1109/TFUZZ.2020.3048577",
+                link: "https://doi.org/10.1109/TFUZZ.2020.3048577"
               }, 
               {
                 title: "Designing distributed fuzzy rule-based models",
@@ -658,8 +658,8 @@ function App() {
                 pages: "2047-2053", 
                 year: "2020",
                 note: "26",
-                doi: "10.1109/TFUZZ.2020.2978854",
-                link: "https://doi.org/10.1109/TFUZZ.2020.2978854"
+                doi: "10.1109/TFUZZ.2020.2984971",
+                link: "https://doi.org/10.1109/TFUZZ.2020.2984971"
               },
               {
                 title: "Augmentation of rule-based models with a granular quantification of results",
@@ -670,8 +670,8 @@ function App() {
                 pages: "12745-12759",
                 year: "2019",
                 note: "11",
-                doi: "10.1007/s00500-019-04004-4", 
-                link: "https://doi.org/10.1007/s00500-019-04004-4"
+                doi: "10.1007/s00500-019-03825-7", 
+                link: "https://doi.org/10.1007/s00500-019-03825-7"
               },
               {
                 title: "Enhancements of rule-based models through refinements of Fuzzy C-Means",

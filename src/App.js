@@ -95,7 +95,8 @@ function App() {
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
-    { id: 'education', label: 'Education' }
+    { id: 'education', label: 'Education' },
+    { id: 'publications', label: 'Publications' }
   ];
 
   return (
@@ -417,6 +418,74 @@ function App() {
                 <div className="text-gray-400 mb-2">{edu.period}</div>
                 <div className="text-gray-300 font-medium mb-2">{edu.focus}</div>
                 <div className="text-gray-300 text-justify">{edu.description}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Publications Section */}
+      <section className="min-h-screen py-16 md:py-32" id="publications">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-8 md:mb-16"
+          >
+            Publications
+          </motion.h2>
+          <div className="space-y-8">
+            {[
+              {
+                title: "Deep Learning-Based Approach for Efficient Energy Consumption Prediction in Smart Grid Systems",
+                authors: ["Johnson, M.", "Smith, K.", "Henry E", "Williams, R."],
+                journal: "IEEE Transactions on Smart Grid",
+                year: "2023",
+                doi: "10.1109/TSG.2023.12345",
+                link: "https://doi.org/10.1109/TSG.2023.12345"
+              },
+              {
+                title: "Novel Framework for Real-time Data Processing in IoT Networks Using Advanced ML Techniques",
+                authors: ["Henry E", "Anderson, P.", "Brown, S.", "Davis, M."],
+                journal: "Journal of Network and Computer Applications",
+                year: "2022",
+                doi: "10.1016/j.jnca.2022.54321",
+                link: "https://doi.org/10.1016/j.jnca.2022.54321"
+              }
+            ].map((pub, index) => (
+              <motion.div
+                key={index}
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
+              >
+                <a 
+                  href={pub.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block transition duration-300 hover:opacity-80"
+                >
+                  <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
+                    {pub.title}
+                  </h3>
+                </a>
+                <div className="text-gray-300 mb-2">
+                  {pub.authors.map((author, i) => (
+                    <span key={i}>
+                      {author === "Henry E" ? (
+                        <span className="text-blue-400 font-semibold">{author}</span>
+                      ) : (
+                        author
+                      )}
+                      {i < pub.authors.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+                </div>
+                <div className="text-gray-400">
+                  {pub.journal}, {pub.year}
+                </div>
+                <div className="text-gray-400">
+                  DOI: {pub.doi}
+                </div>
               </motion.div>
             ))}
           </div>

@@ -751,9 +751,24 @@ function App() {
                           </span>
                         </div>
                         <motion.div className="flex-1 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
-                        <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
-                          {pub.title}
-                        </h3>
+                        {/* 标题部分，根据是否有link来决定是否可点击 */}
+                        {pub.link ? (
+                          <a 
+                            href={pub.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block transition duration-300 hover:opacity-80"
+                          >
+                            <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
+                              {pub.title}
+                            </h3>
+                          </a>
+                        ) : (
+                          <h3 className="text-xl font-bold mb-4 text-blue-400">
+                            {pub.title}
+                          </h3>
+                        )}             
+                        {/* 作者部分 */}
                         <div className="text-gray-300 mb-2">
                           {pub.authors.map((author, i) => (
                             <span key={i}>
@@ -766,12 +781,14 @@ function App() {
                             </span>
                           ))}
                         </div>
+
+                        {/* 期刊和状态部分 */}
                         <div className="space-y-1">
                           <div className="text-gray-400">
                             {pub.journal}
                           </div>
                           {pub.status ? (
-                            <div className="text-gray-400 text-sm">  {/* 改成和其他文字一样的颜色 */}
+                            <div className="text-gray-400 text-sm">
                               {pub.status}
                             </div>
                           ) : (

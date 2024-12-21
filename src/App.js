@@ -15,16 +15,21 @@ function App() {
   return (
     <div ref={containerRef} className="bg-black text-white">
       {/* 导航栏 */}
-      <nav className="fixed w-full bg-black/30 backdrop-blur-lg z-50 px-8 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <motion.div 
+      <nav className="fixed w-full bg-black/30 backdrop-blur-lg z-50 px-4 md:px-8 py-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          {/* 在手机端垂直排列，平板/桌面端水平排列 */}
+          <motion.div
+
+
+
+
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold"
+            className="text-xl md:text-2xl font-bold"
           >
             Henry E
           </motion.div>
-          <motion.div className="space-x-8">
+          <motion.div className="space-y-4 md:space-y-0 md:space-x-8 mt-4 md:mt-0 flex flex-col md:flex-row items-center">
             <a href="#about" className="hover:text-blue-400 transition duration-300">About</a>
             <a href="#experience" className="hover:text-blue-400 transition duration-300">Experience</a>
             <a href="#skills" className="hover:text-blue-400 transition duration-300">Skills</a>
@@ -38,45 +43,28 @@ function App() {
       <section className="h-screen relative overflow-hidden">
         <motion.div 
           style={{ y: y1 }}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center px-4 md:px-8"
         >
           <div className="text-center">
             <motion.h1 
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-7xl font-bold mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-                Henry (Hanyu) E
+                Henry E
               </span>
             </motion.h1>
             <motion.h2 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-2xl text-gray-300 mb-4"
+              className="text-lg md:text-2xl text-gray-300 mb-4"
             >
               Ph.D. in Software and Intelligent Systems
             </motion.h2>
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex justify-center space-x-6 text-gray-400"
+              className="flex flex-col md:flex-row justify-center space-y-3 md:space-y-0 md:space-x-6 text-sm md:text-base text-gray-400"
             >
-              <a href="mailto:crocodilehy@gmail.com" className="hover:text-blue-400 transition">
-                crocodilehy@gmail.com
-              </a>
-              <a href="tel:+17807161955" className="hover:text-blue-400 transition">
-                +1 (780) 716 1955
-              </a>
-              <a href="https://scholar.google.com/citations?user=N-Ql578AAAAJ&hl=en" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 className="hover:text-blue-400 transition"
-              >
-                Google Scholar
-              </a>
+              <a href="mailto:crocodilehy@gmail.com">crocodilehy@gmail.com</a>
+              <a href="tel:+17807161955">+1 (780) 716 1955</a>
             </motion.div>
           </div>
         </motion.div>
@@ -106,16 +94,14 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section className="min-h-screen py-32 bg-gradient-to-b from-black via-blue-900/10 to-black" id="skills">
-        <div className="max-w-6xl mx-auto px-8">
+      <section className="min-h-screen py-16 md:py-32" id="skills">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-4xl font-bold mb-16 text-center"
+            className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 text-center"
           >
             Technical Skills
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {[
               { 
                 title: "Programming", 
@@ -163,16 +149,14 @@ function App() {
       </section>
 
       {/* Experience Section */}
-      <section className="min-h-screen py-32" id="experience">
-        <div className="max-w-6xl mx-auto px-8">
+      <section className="min-h-screen py-16 md:py-32" id="experience">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-4xl font-bold mb-16"
+            className="text-3xl md:text-4xl font-bold mb-8 md:mb-16"
           >
             Professional Experience
           </motion.h2>
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {[
               {
                 title: "Postdoctoral Fellow & Project Coordinator",

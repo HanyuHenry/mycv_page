@@ -163,9 +163,19 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 px-4 md:px-0"
             >
-              <span className="bg-clip-text text-transparent animate-gradient bg-[length:400%_auto] bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-red-500 via-yellow-500 via-green-500 to-blue-500">
+              <span className="bg-clip-text text-transparent animate-gradient bg-[length:400%_auto] bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-red-500 via-green-500 to-blue-500">
                 Henry E
               </span>
+              <style jsx global>{`
+                  @keyframes gradient {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                  }
+                  .animate-gradient {
+                    animation: gradient 4s linear infinite;
+                  }
+                `}</style>
             </motion.h1>
 
             <motion.h2 

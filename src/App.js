@@ -40,7 +40,7 @@ function App() {
       setIsOpen(false);
       
       setTimeout(() => {
-        const navHeight = 80;
+        const navHeight = 40;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - navHeight;
         
@@ -513,6 +513,21 @@ function App() {
               // 所有的文章数据
               const allPublications = [
               {
+                title: "Design of fuzzy rule-based models in heterogeneous data spaces and their stability",
+                authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Marek, Sikora", "Zhiwu Li", "Lukasz Wawrowski", "Michal Kozielski"],
+                journal: "IEEE Transactions on Knowledge and Data Engineering",
+                year: "Under Review",
+                status: "Under Review"
+              },
+              {
+                title: "A Novel Neural Network-Based Fuzzy Ranking for Decision Problems in Sustainable Energy",
+                authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz","Aminah Robinson Fayek","Simaan Abourizk"],
+                journal: "Renewable Energy",
+                year: "Under Review",
+                status: "Under Review"
+              },
+              
+              {
                 title: "From Fuzzy Rule-Based Models to Granular Models",
                 authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Aminah Robinson Fayek", "Zhiwu Li", "Xianmin Wang"],
                 journal: "IEEE Transactions on Fuzzy Systems",
@@ -706,19 +721,23 @@ function App() {
             }, {});
 
             return Object.entries(groupedPubs)
-              .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-              .map(([year, publications]) => (
-                <div key={year} className="space-y-6">
-                  <motion.h3
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    className="text-2xl font-bold text-blue-400 border-b border-blue-400/30 pb-2"
-                  >
-                    {year}
-                  </motion.h3>
-                  {publications.map((pub) => {
-                    currentCount -= 1;
-                    return (
+            .sort(([yearA], [yearB]) => {
+              if (yearA === "Under Review") return -1;
+              if (yearB === "Under Review") return 1;
+              return Number(yearB) - Number(yearA);
+            })
+            .map(([year, publications]) => (
+              <div key={year} className="space-y-6">
+                <motion.h3
+                  initial={{ x: -50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  className="text-2xl font-bold text-blue-400 border-b border-blue-400/30 pb-2"
+                >
+                  {year}
+                </motion.h3>
+                {publications.map((pub) => {
+                  currentCount -= 1;
+                  return (
                       <div key={pub.title} className="relative flex items-start gap-8">
                         <div className="hidden md:block -mt-4">
                           <span className="text-[130px] text-blue-400/60 select-none" 
@@ -731,46 +750,47 @@ function App() {
                             {String(currentCount).padStart(2, '0')}
                           </span>
                         </div>
-                        <motion.div
-                          initial={{ x: -50, opacity: 0 }}
-                          whileInView={{ x: 0, opacity: 1 }}
-                          transition={{ duration: 0.5, delay: 0.03 }}
-                          className="flex-1 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
-                        >
-                          <a 
-                            href={pub.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block transition duration-300 hover:opacity-80"
-                          >
-                            <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
-                              {pub.title}
-                            </h3>
-                          </a>
-                          <div className="text-gray-300 mb-2">
-                            {pub.authors.map((author, i) => (
-                              <span key={i}>
-                                {author === "Hanyu E" ? (
-                                  <span className="text-blue-400 font-semibold">{author}</span>
-                                ) : (
-                                  author
-                                )}
-                                {i < pub.authors.length - 1 ? ", " : ""}
-                              </span>
-                            ))}
-                          </div>
+                        <motion.div className="flex-1 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
+                        <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
+                          {pub.title}
+                        </h3>
+                        <div className="text-gray-300 mb-2">
+                          {pub.authors.map((author, i) => (
+                            <span key={i}>
+                              {author === "Hanyu E" ? (
+                                <span className="text-blue-400 font-semibold">{author}</span>
+                              ) : (
+                                author
+                              )}
+                              {i < pub.authors.length - 1 ? ", " : ""}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="space-y-1">
                           <div className="text-gray-400">
-                            {pub.journal}, {pub.year}
+                            {pub.journal}
                           </div>
-                          <div className="text-gray-400">
-                            DOI: {pub.doi}
-                          </div>
-                        </motion.div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ));
+                          {pub.status ? (
+                            <div className="text-gray-400 text-sm">  {/* 改成和其他文字一样的颜色 */}
+                              {pub.status}
+                            </div>
+                          ) : (
+                            <>
+                              <div className="text-gray-400">
+                                {pub.year}
+                              </div>
+                              <div className="text-gray-400">
+                                DOI: {pub.doi}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </motion.div>
+                    </div>
+                  );
+                })}
+              </div>
+            ));
             })()}
           </div>
         </div>

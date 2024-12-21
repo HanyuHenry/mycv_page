@@ -1,12 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
+
+  const handleNavClick = (targetId) => {
+    const element = document.getElementById(targetId);
+    if (element) {
+      setIsOpen(false); // 关闭菜单
+      const navHeight = 80; // 导航栏的高度，根据实际情况调整
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   // 创建不同的变换效果
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
@@ -15,22 +32,55 @@ function App() {
   return (
     <div ref={containerRef} className="bg-black text-white">
       {/* 导航栏 */}
-      <nav className="fixed w-full bg-black/30 backdrop-blur-lg z-50 px-4 md:px-8 py-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          {/* 在手机端垂直排列，平板/桌面端水平排列 */}
+      <nav className="fixed w-full bg-black/30 backdrop-blur-lg z-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-xl font-bold"
+            >
+              Henry E
+            </motion.div>
+            
+            {/* Desktop Navigation */}
+            <motion.div className="hidden md:flex space-x-8">
+              <a onClick={() => handleNavClick('about')} className="hover:text-blue-400 transition duration-300 cursor-pointer">About</a>
+              <a onClick={() => handleNavClick('experience')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Experience</a>
+              <a onClick={() => handleNavClick('skills')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Skills</a>
+              <a onClick={() => handleNavClick('projects')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Projects</a>
+              <a onClick={() => handleNavClick('education')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Education</a>
+            </motion.div>
+
+            {/* Mobile Navigation Button */}
+            <div className="md:hidden relative">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-white hover:text-blue-400 transition duration-300 p-2"
+                aria-label="Toggle menu"
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-xl md:text-2xl font-bold"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{
+              opacity: isOpen ? 1 : 0,
+              height: isOpen ? 'auto' : 0
+            }}
+            className="md:hidden overflow-hidden absolute right-0 w-48 mt-2 py-2 bg-black/95 backdrop-blur-lg rounded shadow-xl z-50"
+            style={{ top: '100%', right: '1rem' }}
           >
-            Henry E
-          </motion.div>
-          <motion.div className="space-y-4 md:space-y-0 md:space-x-8 mt-4 md:mt-0 flex flex-col md:flex-row items-center">
-            <a href="#about" className="hover:text-blue-400 transition duration-300">About</a>
-            <a href="#experience" className="hover:text-blue-400 transition duration-300">Experience</a>
-            <a href="#skills" className="hover:text-blue-400 transition duration-300">Skills</a>
-            <a href="#projects" className="hover:text-blue-400 transition duration-300">Projects</a>
-            <a href="#education" className="hover:text-blue-400 transition duration-300">Education</a>
+            <div className="py-2">
+              <a onClick={() => handleNavClick('about')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">About</a>
+              <a onClick={() => handleNavClick('experience')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Experience</a>
+              <a onClick={() => handleNavClick('skills')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Skills</a>
+              <a onClick={() => handleNavClick('projects')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Projects</a>
+              <a onClick={() => handleNavClick('education')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Education</a>
+            </div>
           </motion.div>
         </div>
       </nav>
@@ -61,6 +111,8 @@ function App() {
             >
               <a href="mailto:crocodilehy@gmail.com">crocodilehy@gmail.com</a>
               <a href="tel:+17807161955">+1 (780) 716 1955</a>
+              <span>Edmonton, AB, Canada, T6J 1M3</span>
+              <a href="https://www.linkedin.com/in/Henry--E/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
             </motion.div>
           </div>
         </motion.div>
@@ -80,7 +132,7 @@ function App() {
             className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
           >
             <h2 className="text-4xl font-bold mb-8">Professional Summary</h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-xl text-gray-300 leading-relaxed text-justify">
               Software engineer with research background in machine learning and data processing. 
               Experience in both backend development and ML model deployment. 
               Demonstrated ability to improve system performance and implement automated testing solutions.
@@ -144,7 +196,67 @@ function App() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Projects Section */}
+      <section className="min-h-screen py-16 md:py-32" id="projects">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-8 md:mb-16"
+          >
+            Key Projects
+          </motion.h2>
+          <div className="space-y-8 md:space-y-12">
+            {[
+              {
+                title: "Sustainable Energy Data Solution",
+                period: "Jan. 2021 - Present",
+                points: [
+                  "Developed machine learning models for energy consumption prediction",
+                  "Used PyTorch to implement and train neural networks",
+                  "Improved prediction accuracy by 30% through model optimization",
+                  "Created data preprocessing pipeline for handling time-series data"
+                ]
+              },
+              {
+                title: "Smart Monitoring System",
+                period: "Feb. 2021 - July 2021",
+                points: [
+                  "Built iOS application for truck cargo monitoring",
+                  "Implemented Bluetooth connectivity for sensor data collection",
+                  "Developed real-time status updates and notifications",
+                  "Created user-friendly interface for drivers to monitor cargo status"
+                ]
+              },
+              {
+                title: "Data Analytics Platform",
+                period: "Jun. 2018 - Feb. 2021",
+                points: [
+                  "Built Python-based platform for analyzing research data",
+                  "Implemented data processing pipelines using NumPy and Pandas",
+                  "Improved analysis speed by 25% through code optimization",
+                  "Integrated machine learning models for data prediction",
+                  "Developed basic API endpoints for data access"
+                ]
+              }
+            ].map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
+              >
+                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                <div className="text-gray-400 mb-4">{project.period}</div>
+                <ul className="space-y-3">
+                  {project.points.map((point, i) => (
+                    <li key={i} className="text-gray-300">• {point}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="min-h-screen py-16 md:py-32" id="experience">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.h2
@@ -194,6 +306,45 @@ function App() {
                     <li key={i} className="text-gray-300">• {point}</li>
                   ))}
                 </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Education Section */}
+      <section className="min-h-screen py-16 md:py-32" id="education">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-8 md:mb-16"
+          >
+            Education
+          </motion.h2>
+          <div className="space-y-8 md:space-y-12">
+            {[
+              {
+                title: "Doctor of Philosophy (Software Engineering & AI)",
+                school: "University of Alberta",
+                period: "Sep. 2016 to Aug. 2022",
+                focus: "Research Focus: Machine Learning Applications and Data Processing"
+              },
+              {
+                title: "Bachelor's degree (Mechanical Engineering)",
+                school: "Xidian University",
+                period: "Sep. 2011 to Aug. 2015",
+                focus: ""
+              }
+            ].map((edu, index) => (
+              <motion.div
+                key={edu.title}
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
+              >
+                <h3 className="text-2xl font-bold mb-2">{edu.title}</h3>
+                <div className="text-xl text-blue-400 mb-2">{edu.school}</div>
+                <div className="text-gray-400 mb-2">{edu.period}</div>
+                {edu.focus && <div className="text-gray-300">{edu.focus}</div>}
               </motion.div>
             ))}
           </div>

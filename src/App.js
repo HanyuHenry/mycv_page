@@ -151,34 +151,25 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero/Main Section */}
-      <section className="h-screen relative overflow-hidden" id="main">
+      {/* Main Section */}
+      <section className="min-h-screen relative overflow-hidden pt-24 md:pt-0" id="main">
         <motion.div 
           style={{ y: y1 }}
-          className="absolute inset-0 flex items-center justify-center px-4 md:px-8 pt-20"
+          className="absolute inset-0 flex items-center justify-center px-4 md:px-8"
         >
           <div className="text-center max-w-5xl">
-              <motion.h1 
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6"
-              >
-                <span className="bg-clip-text text-transparent animate-gradient bg-[length:400%_auto] bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-red-500 via-yellow-500 via-green-500 to-blue-500">
-                  Henry E
-                </span>
-                <style jsx global>{`
-                  @keyframes gradient {
-                    0% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
-                    100% { background-position: 0% 50%; }
-                  }
-                  .animate-gradient {
-                    animation: gradient 6s linear infinite;
-                  }
-                `}</style>
-              </motion.h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 px-4 md:px-0"
+            >
+              <span className="bg-clip-text text-transparent animate-gradient bg-[length:400%_auto] bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-red-500 via-yellow-500 via-green-500 to-blue-500">
+                Henry E
+              </span>
+            </motion.h1>
+
             <motion.h2 
-              className="text-xl md:text-3xl text-gray-300 mb-16"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-8 md:mb-16 px-4 md:px-0"
             >
               Ph.D. in Software and Intelligent Systems
             </motion.h2>
@@ -188,7 +179,7 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto"
             >
               {[
                 {
@@ -232,7 +223,7 @@ function App() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
-                  className="relative group"
+                  className="relative group px-2 sm:px-0"
                 >
                   {item.link ? (
                     <a
@@ -241,16 +232,16 @@ function App() {
                       rel={item.link.startsWith('http') ? "noopener noreferrer" : undefined}
                       className="block w-full h-full"
                     >
-                      <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-xl p-4 transition duration-300 transform hover:scale-105 hover:from-blue-900/40 hover:to-purple-900/40 shadow-lg">
-                        <div className="text-2xl mb-2">{item.icon}</div>
-                        <div className="text-gray-400 text-sm">{item.label}</div>
-                        <div className="text-white font-medium truncate">{item.value}</div>
+                      <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-xl p-3 sm:p-4 transition duration-300 transform hover:scale-105 hover:from-blue-900/40 hover:to-purple-900/40 shadow-lg">
+                      <div className="text-xl sm:text-2xl mb-2">{item.icon}</div>
+                      <div className="text-gray-400 text-xs sm:text-lg">{item.label}</div>
+                      <div className="text-white text-sm sm:text-base font-medium truncate">{item.value}</div>
                       </div>
                     </a>
                   ) : (
                     <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-xl p-4 shadow-lg">
                       <div className="text-2xl mb-2">{item.icon}</div>
-                      <div className="text-gray-400 text-sm">{item.label}</div>
+                      <div className="text-gray-400 text-lg">{item.label}</div>
                       <div className="text-white font-medium truncate">{item.value}</div>
                     </div>
                   )}
@@ -261,8 +252,8 @@ function App() {
         </motion.div>
       </section>
 
-      {/* Professional Summary */}
-      <section className="min-h-screen relative py-32" id="about">
+      {/* About */}
+      <section className="min-h-screen relative py-24 md:py-32" id="about">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -287,7 +278,7 @@ function App() {
       </section>
 
       {/* Experience Section */}
-      <section className="min-h-screen py-16 md:py-32" id="experience">
+      <section className="min-h-screen py-24 md:py-32" id="experience">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-8 md:mb-16"

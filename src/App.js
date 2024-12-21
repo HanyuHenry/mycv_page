@@ -158,15 +158,25 @@ function App() {
           className="absolute inset-0 flex items-center justify-center px-4 md:px-8 pt-20"
         >
           <div className="text-center max-w-5xl">
-            <motion.h1 
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6"
-            >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-                Henry E
-              </span>
-            </motion.h1>
+              <motion.h1 
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6"
+              >
+                <span className="bg-clip-text text-transparent animate-gradient bg-[length:400%_auto] bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 via-red-500 via-yellow-500 via-green-500 to-blue-500">
+                  Henry E
+                </span>
+                <style jsx global>{`
+                  @keyframes gradient {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                  }
+                  .animate-gradient {
+                    animation: gradient 6s linear infinite;
+                  }
+                `}</style>
+              </motion.h1>
             <motion.h2 
               className="text-xl md:text-3xl text-gray-300 mb-16"
             >
@@ -495,13 +505,13 @@ function App() {
       {/* Publications Section */}
       <section className="min-h-screen py-16 md:py-32" id="publications">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-8 md:mb-16"
-          >
+          <motion.h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16">
             Publications
           </motion.h2>
-          <div className="space-y-8">
-            {[
+          <div className="space-y-12">
+            {(() => {
+              // 所有的文章数据
+              const allPublications = [
               {
                 title: "From Fuzzy Rule-Based Models to Granular Models",
                 authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Aminah Robinson Fayek", "Zhiwu Li", "Xianmin Wang"],
@@ -683,44 +693,85 @@ function App() {
                 doi: "10.1016/j.knosys.2019.01.027",
                 link: "https://doi.org/10.1016/j.knosys.2019.01.027"
               }
-            ].map((pub, index) => (
-              <motion.div
-                key={index}
-                initial={{ x: -50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.03 }}
-                className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
-              >
-                <a 
-                  href={pub.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block transition duration-300 hover:opacity-80"
-                >
-                  <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
-                    {pub.title}
-                  </h3>
-                </a>
-                <div className="text-gray-300 mb-2">
-                  {pub.authors.map((author, i) => (
-                    <span key={i}>
-                      {author === "Hanyu E" ? (
-                        <span className="text-blue-400 font-semibold">{author}</span>
-                      ) : (
-                        author
-                      )}
-                      {i < pub.authors.length - 1 ? ", " : ""}
-                    </span>
-                  ))}
+            ];
+            // 计算总文章数，用于倒序编号
+            const totalPubs = allPublications.length;
+            let currentCount = totalPubs + 1;
+
+            // 按年份分组
+            const groupedPubs = allPublications.reduce((acc, pub) => {
+              if (!acc[pub.year]) acc[pub.year] = [];
+              acc[pub.year].push(pub);
+              return acc;
+            }, {});
+
+            return Object.entries(groupedPubs)
+              .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+              .map(([year, publications]) => (
+                <div key={year} className="space-y-6">
+                  <motion.h3
+                    initial={{ x: -50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    className="text-2xl font-bold text-blue-400 border-b border-blue-400/30 pb-2"
+                  >
+                    {year}
+                  </motion.h3>
+                  {publications.map((pub) => {
+                    currentCount -= 1;
+                    return (
+                      <div key={pub.title} className="relative flex items-start gap-8">
+                        <div className="hidden md:block -mt-4">
+                          <span className="text-[130px] text-blue-400/60 select-none" 
+                                style={{ 
+                                  fontFamily: 'Varela Round, "Comic Sans MS", sans-serif',
+                                  fontWeight: '800',
+                                  letterSpacing: '-2px',
+                                  textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+                                }}>
+                            {String(currentCount).padStart(2, '0')}
+                          </span>
+                        </div>
+                        <motion.div
+                          initial={{ x: -50, opacity: 0 }}
+                          whileInView={{ x: 0, opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.03 }}
+                          className="flex-1 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
+                        >
+                          <a 
+                            href={pub.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block transition duration-300 hover:opacity-80"
+                          >
+                            <h3 className="text-xl font-bold mb-4 text-blue-400 hover:text-blue-300">
+                              {pub.title}
+                            </h3>
+                          </a>
+                          <div className="text-gray-300 mb-2">
+                            {pub.authors.map((author, i) => (
+                              <span key={i}>
+                                {author === "Hanyu E" ? (
+                                  <span className="text-blue-400 font-semibold">{author}</span>
+                                ) : (
+                                  author
+                                )}
+                                {i < pub.authors.length - 1 ? ", " : ""}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="text-gray-400">
+                            {pub.journal}, {pub.year}
+                          </div>
+                          <div className="text-gray-400">
+                            DOI: {pub.doi}
+                          </div>
+                        </motion.div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="text-gray-400">
-                  {pub.journal}, {pub.year}
-                </div>
-                <div className="text-gray-400">
-                  DOI: {pub.doi}
-                </div>
-              </motion.div>
-            ))}
+              ));
+            })()}
           </div>
         </div>
       </section>

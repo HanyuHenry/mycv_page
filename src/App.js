@@ -1,37 +1,106 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
+  // 检测当前活动区域
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]');
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
+          setActiveSection(section.id);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 初始检查
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleNavClick = (targetId) => {
     const element = document.getElementById(targetId);
     if (element) {
-      setIsOpen(false); // 关闭菜单
-      const navHeight = 80; // 导航栏的高度，根据实际情况调整
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      setIsOpen(false);
       
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      setTimeout(() => {
+        const navHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }, 100);
     }
   };
 
-  // 创建不同的变换效果
+  // Transform effects
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
+  // 导航项组件
+  const NavItem = ({ id, label, isMobile = false }) => {
+    const isActive = activeSection === id;
+    
+    return (
+      <button
+        onClick={() => handleNavClick(id)}
+        className={`relative group px-3 py-2 transition duration-300 ${
+          isMobile ? 'w-full text-left' : ''
+        }`}
+      >
+        <span className={`relative z-10 transition duration-300 ${
+          isActive ? 'text-blue-400' : 'text-white group-hover:text-blue-400'
+        }`}>
+          {label}
+        </span>
+        {isActive && (
+          <motion.div
+            layoutId={`underline-${isMobile ? 'mobile' : 'desktop'}`}
+            className={`absolute ${
+              isMobile ? 'left-0 top-0 w-1 h-full' : 'bottom-0 left-0 w-full h-0.5'
+            } bg-blue-400`}
+            initial={false}
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 30
+            }}
+          />
+        )}
+      </button>
+    );
+  };
+
+  const navItems = [
+    { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'education', label: 'Education' }
+  ];
+
   return (
     <div ref={containerRef} className="bg-black text-white">
-      {/* 导航栏 */}
+      {/* Navigation Bar */}
       <nav className="fixed w-full bg-black/30 backdrop-blur-lg z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
           <div className="flex justify-between items-center">
@@ -44,16 +113,14 @@ function App() {
             </motion.div>
             
             {/* Desktop Navigation */}
-            <motion.div className="hidden md:flex space-x-8">
-              <a onClick={() => handleNavClick('about')} className="hover:text-blue-400 transition duration-300 cursor-pointer">About</a>
-              <a onClick={() => handleNavClick('experience')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Experience</a>
-              <a onClick={() => handleNavClick('skills')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Skills</a>
-              <a onClick={() => handleNavClick('projects')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Projects</a>
-              <a onClick={() => handleNavClick('education')} className="hover:text-blue-400 transition duration-300 cursor-pointer">Education</a>
+            <motion.div className="hidden md:flex space-x-4">
+              {navItems.map(item => (
+                <NavItem key={item.id} {...item} />
+              ))}
             </motion.div>
 
             {/* Mobile Navigation Button */}
-            <div className="md:hidden relative">
+            <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-white hover:text-blue-400 transition duration-300 p-2"
@@ -65,23 +132,20 @@ function App() {
           </div>
 
           {/* Mobile Menu */}
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{
-              opacity: isOpen ? 1 : 0,
-              height: isOpen ? 'auto' : 0
-            }}
-            className="md:hidden overflow-hidden absolute right-0 w-48 mt-2 py-2 bg-black/95 backdrop-blur-lg rounded shadow-xl z-50"
-            style={{ top: '100%', right: '1rem' }}
-          >
-            <div className="py-2">
-              <a onClick={() => handleNavClick('about')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">About</a>
-              <a onClick={() => handleNavClick('experience')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Experience</a>
-              <a onClick={() => handleNavClick('skills')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Skills</a>
-              <a onClick={() => handleNavClick('projects')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Projects</a>
-              <a onClick={() => handleNavClick('education')} className="block px-4 py-2 hover:text-blue-400 transition duration-300 cursor-pointer">Education</a>
-            </div>
-          </motion.div>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="md:hidden absolute left-0 right-0 mt-2 py-2 bg-black/95 backdrop-blur-lg shadow-xl"
+            >
+              <div className="flex flex-col">
+                {navItems.map(item => (
+                  <NavItem key={item.id} {...item} isMobile={true} />
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </nav>
 
@@ -132,10 +196,12 @@ function App() {
             className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
           >
             <h2 className="text-4xl font-bold mb-8">Professional Summary</h2>
-            <p className="text-xl text-gray-300 leading-relaxed text-justify">
+            <p className="text-xl text-gray-300 leading-relaxed text-justify tracking-wide">
               Software engineer with research background in machine learning and data processing. 
               Experience in both backend development and ML model deployment. 
               Demonstrated ability to improve system performance and implement automated testing solutions.
+              Proven track record of delivering high-quality solutions and driving innovation in software development and artificial intelligence applications.
+              Skilled in collaborating with cross-functional teams and mentoring junior developers.
             </p>
           </motion.div>
         </motion.div>
@@ -173,7 +239,7 @@ function App() {
               },
               { 
                 title: "Databases", 
-                items: ["MySQL"]
+                items: ["MySQL", "PostgreSQL", "MongoDB"]
               }
             ].map((category, index) => (
               <motion.div
@@ -249,7 +315,7 @@ function App() {
                 <div className="text-gray-400 mb-4">{project.period}</div>
                 <ul className="space-y-3">
                   {project.points.map((point, i) => (
-                    <li key={i} className="text-gray-300">• {point}</li>
+                    <li key={i} className="text-gray-300 text-justify">{point}</li>
                   ))}
                 </ul>
               </motion.div>
@@ -257,6 +323,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Experience Section */}
       <section className="min-h-screen py-16 md:py-32" id="experience">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.h2
@@ -303,7 +371,7 @@ function App() {
                 <div className="text-gray-400 mb-4">{job.period}</div>
                 <ul className="space-y-3">
                   {job.points.map((point, i) => (
-                    <li key={i} className="text-gray-300">• {point}</li>
+                    <li key={i} className="text-gray-300 text-justify">{point}</li>
                   ))}
                 </ul>
               </motion.div>
@@ -311,6 +379,7 @@ function App() {
           </div>
         </div>
       </section>
+
       {/* Education Section */}
       <section className="min-h-screen py-16 md:py-32" id="education">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
@@ -325,13 +394,15 @@ function App() {
                 title: "Doctor of Philosophy (Software Engineering & AI)",
                 school: "University of Alberta",
                 period: "Sep. 2016 to Aug. 2022",
-                focus: "Research Focus: Machine Learning Applications and Data Processing"
+                focus: "Research Focus: Machine Learning Applications and Data Processing",
+                description: "Specialized in developing and optimizing machine learning algorithms for real-world applications. Conducted extensive research in data processing techniques and artificial intelligence systems."
               },
               {
                 title: "Bachelor's degree (Mechanical Engineering)",
                 school: "Xidian University",
                 period: "Sep. 2011 to Aug. 2015",
-                focus: ""
+                focus: "Focus: Mechanical Systems and Control",
+                description: "Developed strong foundation in engineering principles and problem-solving methodologies. Participated in multiple robotics projects and automation systems development."
               }
             ].map((edu, index) => (
               <motion.div
@@ -344,7 +415,8 @@ function App() {
                 <h3 className="text-2xl font-bold mb-2">{edu.title}</h3>
                 <div className="text-xl text-blue-400 mb-2">{edu.school}</div>
                 <div className="text-gray-400 mb-2">{edu.period}</div>
-                {edu.focus && <div className="text-gray-300">{edu.focus}</div>}
+                <div className="text-gray-300 font-medium mb-2">{edu.focus}</div>
+                <div className="text-gray-300 text-justify">{edu.description}</div>
               </motion.div>
             ))}
           </div>

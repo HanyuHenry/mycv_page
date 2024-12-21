@@ -105,7 +105,7 @@ function App() {
       {/* Navigation Bar */}
       <nav className="fixed w-full bg-black/30 backdrop-blur-lg z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center relative">  {/* 添加 relative */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -115,14 +115,14 @@ function App() {
             </motion.div>
             
             {/* Desktop Navigation */}
-            <motion.div className="hidden lg:flex space-x-4">
+            <motion.div className="hidden xl:flex space-x-4">
               {navItems.map(item => (
                 <NavItem key={item.id} {...item} />
               ))}
             </motion.div>
 
-            {/* Mobile Navigation Button */}
-            <div className="lg:hidden">
+            {/* Mobile Navigation */}
+            <div className="xl:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-white hover:text-blue-400 transition duration-300 p-2"
@@ -130,24 +130,24 @@ function App() {
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
+              
+              {/* Mobile Menu */}
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="absolute top-full right-0 mt-2 py-2 bg-black/95 backdrop-blur-lg shadow-xl rounded-lg min-w-[200px]"
+                >
+                  <div className="flex flex-col">
+                    {navItems.map(item => (
+                      <NavItem key={item.id} {...item} isMobile={true} />
+                    ))}
+                  </div>
+                </motion.div>
+              )}
             </div>
           </div>
-
-          {/* Mobile Menu */}
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="md:hidden absolute left-0 right-0 mt-2 py-2 bg-black/95 backdrop-blur-lg shadow-xl"
-            >
-              <div className="flex flex-col">
-                {navItems.map(item => (
-                  <NavItem key={item.id} {...item} isMobile={true} />
-                ))}
-              </div>
-            </motion.div>
-          )}
         </div>
       </nav>
 

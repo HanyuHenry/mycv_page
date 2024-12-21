@@ -19,10 +19,6 @@ function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           {/* 在手机端垂直排列，平板/桌面端水平排列 */}
           <motion.div
-
-
-
-
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="text-xl md:text-2xl font-bold"

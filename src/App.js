@@ -111,18 +111,18 @@ function App() {
               animate={{ opacity: 1, x: 0 }}
               className="text-xl font-bold"
             >
-              Henry E
+              Henry (Hanyu) E
             </motion.div>
             
             {/* Desktop Navigation */}
-            <motion.div className="hidden md:flex space-x-4">
+            <motion.div className="hidden lg:flex space-x-4">
               {navItems.map(item => (
                 <NavItem key={item.id} {...item} />
               ))}
             </motion.div>
 
             {/* Mobile Navigation Button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-white hover:text-blue-400 transition duration-300 p-2"
@@ -208,13 +208,13 @@ function App() {
                   icon: "📚",
                   label: "Google Scholar",
                   value: "View Publications",
-                  link: "https://scholar.google.com/",
+                  link: "https://scholar.google.com/citations?user=N-Ql578AAAAJ&hl=en&authuser=1",
                 },
                 {
                   icon: "💻",
                   label: "GitHub",
                   value: "See My Code",
-                  link: "https://github.com/",
+                  link: "https://github.com/HanyuHenry",
                 },
               ].map((item, index) => (
                 <motion.div
@@ -503,27 +503,192 @@ function App() {
           <div className="space-y-8">
             {[
               {
-                title: "Deep Learning-Based Approach for Efficient Energy Consumption Prediction in Smart Grid Systems",
-                authors: ["Johnson, M.", "Smith, K.", "Henry E", "Williams, R."],
-                journal: "IEEE Transactions on Smart Grid",
-                year: "2023",
-                doi: "10.1109/TSG.2023.12345",
-                link: "https://doi.org/10.1109/TSG.2023.12345"
+                title: "From Fuzzy Rule-Based Models to Granular Models",
+                authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Aminah Robinson Fayek", "Zhiwu Li", "Xianmin Wang"],
+                journal: "IEEE Transactions on Fuzzy Systems",
+                year: "2024",
+                doi: "10.1109/TFUZZ.2024.3483817",
+                link: "https://ieeexplore.ieee.org/abstract/document/10738440"
               },
               {
-                title: "Novel Framework for Real-time Data Processing in IoT Networks Using Advanced ML Techniques",
-                authors: ["Henry E", "Anderson, P.", "Brown, S.", "Davis, M."],
-                journal: "Journal of Network and Computer Applications",
+                title: "Strategies for Designing Machine Learning Models in Renewable Energy with Insufficient Data",
+                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Aminah Robinson Fayek", "Simaan AbouRizk"],
+                journal: "Energy",
+                year: "2024",
+                pages: "133475",
+                note: "1*",
+                doi: "10.1016/j.energy.2023.133475",
+                link: "https://doi.org/10.1016/j.energy.2024.133475"
+              },
+              {
+                title: "Constructing Perturbation Matrices of Prototypes for Enhancing the Performance of Fuzzy Decoding Mechanism",
+                authors: ["Kaijie Xu", "Hanyu E", "Junliang Liu", "Guoyao Xiao", "Xianan Tang", "Mengdao Xing"],
+                journal: "International Journal of Intelligent Systems",
+                year: "2024", 
+                note: "2",
+                doi: "10.1155/2024/5780186",
+                link: "https://doi.org/10.1109/TAES.2022.3144121"
+              },
+              {
+                title: "Continuous Mapping of Covering Approximation Spaces and Topologies Induced by Arbitrary Covering Relations", 
+                authors: ["Xiuying Shang", "Peng Wang", "Rui Wu", "Hanyu E"],
+                journal: "Symmetry",
+                volume: "15",
+                number: "10",
+                pages: "1808",
+                year: "2023",
+                doi: "10.3390/sym15101808",
+                link: "https://doi.org/10.3390/sym15101808"
+              },
+              {
+                title: "Language recovery in discrete-event systems against sensor deception attacks",
+                authors: ["Abdelouahab Labed", "Ilyasse Saadaoui", "Hanyu E", "Mohamed A. El-Meligy", "Zhiwu Li", "Mohamed Sharaf"],
+                journal: "Mathematics",
+                volume: "11",
+                number: "10", 
+                pages: "2313",
+                year: "2023",
+                note: "2",
+                doi: "10.3390/math11102313",
+                link: "https://doi.org/10.3390/math11102313"
+              },
+              {
+                title: "Modeling of Fault Recovery and Repair for Automated Manufacturing Cells with Load-Sharing Redundant Elements Using Petri Nets",
+                authors: ["Emad A. Alzalab", "Umaru Saleh Abubakar", "Hanyu E", "Zhiwu Li", "Mohamed A. El-Meligy", "Ahmed M. El-Sherbeeny"], 
+                journal: "Processes",
+                volume: "11",
+                number: "5",
+                pages: "1501",
+                year: "2023",
+                doi: "10.3390/pr11051501",
+                link: "https://doi.org/10.3390/pr11051501"
+              },
+              {
+                title: "Design of Distributed Rule-Based Models in the Presence of Large Data",
+                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Zhiwu Li"],
+                journal: "IEEE Transactions on Fuzzy Systems",
+                year: "2022", 
+                note: "18*",
+                doi: "10.1109/TFUZZ.2022.3200511",
+                link: "https://doi.org/10.1109/TFUZZ.2022.3200511"
+              },
+              {
+                title: "A granular multicriteria group decision making for renewable energy planning problems",
+                authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Aminah Robinson Fayek"],
+                journal: "Renewable Energy",
                 year: "2022",
-                doi: "10.1016/j.jnca.2022.54321",
-                link: "https://doi.org/10.1016/j.jnca.2022.54321"
+                note: "9",
+                doi: "10.1016/j.renene.2022.09.093",
+                link: "https://doi.org/10.1016/j.renene.2022.09.093"
+              },
+              {
+                title: "Design of Fuzzy Rule-Based Models with Fuzzy Relational Factorization",
+                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Aminah Robinson Fayek", "Zhiwu Li", "Jing Li"],
+                journal: "Expert Systems with Applications",
+                pages: "117904",
+                year: "2022", 
+                note: "14*",
+                doi: "10.1016/j.eswa.2022.117904",
+                link: "https://doi.org/10.1016/j.eswa.2022.117904"
+              },
+              {
+                title: "High-accuracy DOA Estimation Algorithm at Low SNR Through Exploiting a Supervised Index",
+                authors: ["Kaijie Xu", "Ming Xing", "Ruhu Zhang", "Hanyu E", "Meng Sha", "Wenjie Nie", "Yi Quan"],
+                journal: "IEEE Transactions on Aerospace and Electronic Systems",
+                year: "2022",
+                note: "20",
+                doi: "10.1109/TAES.2022.3173554",
+                link: "https://doi.org/10.1109/TAES.2022.3173554" 
+              },
+              {
+                title: "Fuzzy Rule-Based Models of High-Dimensional Systems: Design and Analysis",
+                authors: ["Hanyu E"],
+                journal: "University of Alberta",
+                year: "2022",
+                doi: "10.7939/r3-dwmj-as63",
+                link: "https://doi.org/10.7939/r3-dwmj-as63"
+              },
+              {
+                title: "High-Dimensional Data Clustering with Fuzzy C-Means: Problem, Reason, and Solution",
+                authors: ["Yang Shen", "Hanyu E", "Tianmei Chen", "Zhemin Xiao", "Bo Liu", "Yansong Chen"],
+                journal: "International Work-Conference on Artificial Neural Networks",
+                pages: "89-100",
+                year: "2021",
+                note: "3",
+                doi: "10.1007/978-3-030-85099-9_9",
+                link: "https://doi.org/10.1007/978-3-030-85099-9_9"
+              },
+              {
+                title: "Fast Direction of Arrival Estimation for Uniform Circular Arrays With a Virtual Signal Subspace",
+                authors: ["Kaijie Xu", "Yi Quan", "Bo Bie", "Ming Xing", "Wenjie Nie", "Hanyu E"],
+                journal: "IEEE Transactions on Aerospace and Electronic Systems", 
+                volume: "57",
+                number: "3",
+                pages: "1731-1741",
+                year: "2021",
+                note: "24",
+                doi: "10.1109/TAES.2020.3037849",
+                link: "https://doi.org/10.1109/TAES.2020.3037849"
+              },
+              {
+                title: "From granulation-degranulation mechanisms to fuzzy rule-based models: Augmentation of granular-based models with a double fuzzy clustering",
+                authors: ["Kaijie Xu", "Hanyu E", "Yi Quan", "Ye Cui", "Wenjie Nie"], 
+                journal: "Journal of Intelligent & Fuzzy Systems",
+                pages: "1-10",
+                year: "2021",
+                note: "4",
+                doi: "10.3233/JIFS-212576",
+                link: "https://doi.org/10.3233/JIFS-212576"
+              },
+              {
+                title: "Fuzzy Relational Matrix Factorization and Its Granular Characterization in Data Description",
+                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Zhiwu Li"],
+                journal: "IEEE Transactions on Fuzzy Systems",
+                year: "2020",
+                note: "11*",
+                doi: "10.1109/TFUZZ.2020.3035968",
+                link: "https://doi.org/10.1109/TFUZZ.2020.3035968"
+              }, 
+              {
+                title: "Designing distributed fuzzy rule-based models",
+                authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Zhiwu Li"],
+                journal: "IEEE Transactions on Fuzzy Systems",
+                volume: "29",
+                number: "7",
+                pages: "2047-2053", 
+                year: "2020",
+                note: "26",
+                doi: "10.1109/TFUZZ.2020.2978854",
+                link: "https://doi.org/10.1109/TFUZZ.2020.2978854"
+              },
+              {
+                title: "Augmentation of rule-based models with a granular quantification of results",
+                authors: ["Ye Cui", "Hanyu E", "Witold Pedrycz", "Zhiwu Li"],
+                journal: "Soft Computing",
+                volume: "23",
+                number: "23", 
+                pages: "12745-12759",
+                year: "2019",
+                note: "11",
+                doi: "10.1007/s00500-019-04004-4", 
+                link: "https://doi.org/10.1007/s00500-019-04004-4"
+              },
+              {
+                title: "Enhancements of rule-based models through refinements of Fuzzy C-Means",
+                authors: ["Hanyu E", "Ye Cui", "Witold Pedrycz", "Zhiwu Li"],
+                journal: "Knowledge-Based Systems",
+                volume: "170",
+                pages: "43-60",
+                year: "2019",
+                doi: "10.1016/j.knosys.2019.01.027",
+                link: "https://doi.org/10.1016/j.knosys.2019.01.027"
               }
             ].map((pub, index) => (
               <motion.div
                 key={index}
                 initial={{ x: -50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.03 }}
                 className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-lg rounded-2xl p-8 shadow-2xl"
               >
                 <a 
@@ -539,7 +704,7 @@ function App() {
                 <div className="text-gray-300 mb-2">
                   {pub.authors.map((author, i) => (
                     <span key={i}>
-                      {author === "Henry E" ? (
+                      {author === "Hanyu E" ? (
                         <span className="text-blue-400 font-semibold">{author}</span>
                       ) : (
                         author

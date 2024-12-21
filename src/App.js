@@ -155,20 +155,20 @@ function App() {
       <section className="h-screen relative overflow-hidden" id="main">
         <motion.div 
           style={{ y: y1 }}
-          className="absolute inset-0 flex items-center justify-center px-4 md:px-8"
+          className="absolute inset-0 flex items-center justify-center px-4 md:px-8 pt-20"
         >
           <div className="text-center max-w-5xl">
             <motion.h1 
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
+              className="text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
                 Henry E
               </span>
             </motion.h1>
             <motion.h2 
-              className="text-lg md:text-2xl text-gray-300 mb-8"
+              className="text-xl md:text-3xl text-gray-300 mb-16"
             >
               Ph.D. in Software and Intelligent Systems
             </motion.h2>

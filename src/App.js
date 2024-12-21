@@ -288,8 +288,8 @@ function App() {
             {[
               {
                 title: "Postdoctoral Fellow & Project Coordinator",
-                company: "University of Alberta",
-                period: "Sep. 2022 – Present",
+                company: "University of Alberta, Edmonton, Canada",
+                period: "Sep. 2022 - Present",
                 points: [
                   "Developed and optimized machine learning models using Python, improving processing speed by 20%",
                   "Implemented automated testing procedures reducing software release cycle time by 30%",
@@ -299,8 +299,8 @@ function App() {
                 ]
               },
               {
-                title: "Frontend Developer",
-                company: "Apex Automation",
+                title: "Frontend Developer (Part time)",
+                company: "Apex Automation                        Edmonton, Canada",
                 period: "Feb. 2021 - July 2021",
                 points: [
                   "Built iOS applications using Swift and SwiftUI for industrial automation",

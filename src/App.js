@@ -219,7 +219,7 @@ function App() {
                   icon: "📚",
                   label: "Google Scholar",
                   value: "View Publications",
-                  link: "https://scholar.google.com/citations?user=N-Ql578AAAAJ&hl=en&authuser=1",
+                  link: "https://scholar.google.com/citations?user=RQy7f3oAAAAJ&hl=en",
                 },
                 {
                   icon: "💻",
